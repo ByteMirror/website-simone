@@ -8,16 +8,34 @@ export function Hero() {
       className="min-h-screen flex flex-col justify-center relative overflow-hidden"
     >
       {/* Background image */}
-      <div className="absolute inset-0">
-        <img
-          src="/hero-bg.jpg"
-          alt=""
-          className="absolute inset-0 w-full h-full object-cover object-center opacity-30 md:opacity-100"
-        />
-        {/* Subtle vignette for edge blending */}
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_90%_70%_at_50%_50%,transparent_40%,var(--background)_100%)]" />
-        {/* Bottom fade for seamless transition */}
-        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent" />
+      <div className="absolute inset-0 pointer-events-none">
+        {/* Mobile: centered, faded */}
+        <div className="md:hidden absolute inset-0">
+          <img
+            src="/hero-bg.jpg"
+            alt=""
+            className="absolute inset-0 w-full h-full object-cover object-center opacity-30"
+          />
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_90%_70%_at_50%_50%,transparent_40%,var(--background)_100%)]" />
+          <div className="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent" />
+        </div>
+
+        {/* Desktop: positioned right with fade-to-left */}
+        <div className="hidden md:block absolute top-0 bottom-0 left-[20%] right-0">
+          <img
+            src="/hero-bg.jpg"
+            alt=""
+            className="absolute inset-0 w-full h-full object-cover object-center"
+          />
+          {/* Fade to left */}
+          <div className="absolute inset-0 bg-gradient-to-r from-background via-background/70 to-transparent" />
+          {/* Fade top edge */}
+          <div className="absolute inset-0 bg-gradient-to-b from-background via-transparent to-transparent h-1/4" />
+          {/* Fade bottom edge */}
+          <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent h-1/3" />
+          {/* Fade right edge */}
+          <div className="absolute inset-0 bg-gradient-to-l from-background via-transparent to-transparent w-1/6 ml-auto" />
+        </div>
       </div>
 
       <div className="container mx-auto px-6 relative z-10">
