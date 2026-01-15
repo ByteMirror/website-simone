@@ -1,6 +1,15 @@
 import { useState, useEffect, type ReactNode } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card"
 import { Lock } from "lucide-react"
 
 const CORRECT_PASSWORD = "mathilda-2009"
@@ -52,45 +61,51 @@ export function PasswordGate({ children }: PasswordGateProps) {
 
   return (
     <div className="min-h-screen bg-background flex items-center justify-center px-6">
-      <div className="w-full max-w-sm">
-        <div className="text-center mb-8">
-          <div className="w-16 h-16 mx-auto mb-6 border border-border rounded-full flex items-center justify-center">
-            <Lock className="w-6 h-6 text-muted-foreground" />
+      <Card className="w-full max-w-sm border-border">
+        <CardHeader className="text-center">
+          <div className="w-14 h-14 mx-auto mb-4 border border-border rounded-full flex items-center justify-center">
+            <Lock className="w-5 h-5 text-muted-foreground" />
           </div>
-          <h1 className="text-2xl font-serif mb-2">Geschützter Bereich</h1>
-          <p className="text-muted-foreground text-sm">
+          <CardTitle className="font-serif text-xl">Geschützter Bereich</CardTitle>
+          <CardDescription>
             Bitte geben Sie das Passwort ein, um fortzufahren.
-          </p>
-        </div>
+          </CardDescription>
+        </CardHeader>
 
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <div>
-            <Input
-              type="password"
-              value={password}
-              onChange={(e) => {
-                setPassword(e.target.value)
-                setError(false)
-              }}
-              placeholder="Passwort"
-              className={`bg-transparent text-center ${error ? "border-red-500" : ""}`}
-              autoFocus
-            />
-            {error && (
-              <p className="text-red-500 text-sm text-center mt-2">
-                Falsches Passwort
-              </p>
-            )}
-          </div>
-          <Button type="submit" className="w-full">
-            Zugang erhalten
-          </Button>
+        <form onSubmit={handleSubmit}>
+          <CardContent className="space-y-4">
+            <div className="space-y-2">
+              <Label htmlFor="password">Passwort</Label>
+              <Input
+                id="password"
+                type="password"
+                value={password}
+                onChange={(e) => {
+                  setPassword(e.target.value)
+                  setError(false)
+                }}
+                placeholder="Passwort eingeben"
+                className={`bg-transparent ${error ? "border-red-500 focus-visible:ring-red-500" : ""}`}
+                autoFocus
+              />
+              {error && (
+                <p className="text-red-500 text-sm">
+                  Falsches Passwort. Bitte versuchen Sie es erneut.
+                </p>
+              )}
+            </div>
+          </CardContent>
+
+          <CardFooter className="flex-col gap-4">
+            <Button type="submit" className="w-full">
+              Zugang erhalten
+            </Button>
+            <p className="text-xs text-muted-foreground text-center">
+              Kanzlei Simone Möller
+            </p>
+          </CardFooter>
         </form>
-
-        <p className="text-xs text-muted-foreground text-center mt-8">
-          Kanzlei Simone Möller
-        </p>
-      </div>
+      </Card>
     </div>
   )
 }
