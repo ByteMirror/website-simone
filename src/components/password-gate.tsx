@@ -96,7 +96,7 @@ export function PasswordGate({ children }: PasswordGateProps) {
             </div>
           </CardContent>
 
-          <CardFooter className="flex-col gap-4">
+          <CardFooter className="flex-col gap-4 pt-4">
             <Button type="submit" className="w-full">
               Zugang erhalten
             </Button>
