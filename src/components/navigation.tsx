@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import { Link, useLocation } from "react-router-dom"
 import { Button } from "@/components/ui/button"
 import { Menu, X } from "lucide-react"
@@ -11,19 +11,42 @@ const navLinks = [
   { href: "/#kontakt", label: "Kontakt" },
 ]
 
+// Scroll threshold in pixels before hiding/showing nav
+const SCROLL_THRESHOLD = 10
+
 export function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false)
+  const [isHidden, setIsHidden] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const lastScrollY = useRef(0)
   const location = useLocation()
   const isHomePage = location.pathname === "/"
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50)
+      const currentScrollY = window.scrollY
+
+      setIsScrolled(currentScrollY > 50)
+
+      // Don't hide nav when mobile menu is open or at very top of page
+      if (isMobileMenuOpen || currentScrollY < 100) {
+        setIsHidden(false)
+        lastScrollY.current = currentScrollY
+        return
+      }
+
+      // Calculate scroll difference
+      const scrollDiff = currentScrollY - lastScrollY.current
+
+      // Only trigger hide/show if scroll exceeds threshold
+      if (Math.abs(scrollDiff) > SCROLL_THRESHOLD) {
+        setIsHidden(scrollDiff > 0) // Hide when scrolling down, show when scrolling up
+        lastScrollY.current = currentScrollY
+      }
     }
-    window.addEventListener("scroll", handleScroll)
+    window.addEventListener("scroll", handleScroll, { passive: true })
     return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
+  }, [isMobileMenuOpen])
 
   // Lock body scroll when mobile menu is open
   useEffect(() => {
@@ -55,10 +78,11 @@ export function Navigation() {
   return (
     <header
       className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-500",
+        "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
         isScrolled || isMobileMenuOpen || !isHomePage
           ? "bg-background border-b border-border"
-          : "bg-transparent"
+          : "bg-transparent",
+        isHidden && !isMobileMenuOpen ? "-translate-y-full" : "translate-y-0"
       )}
     >
       <nav className="container mx-auto px-6 h-20 flex items-center justify-between">

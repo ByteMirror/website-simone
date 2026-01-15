@@ -58,24 +58,24 @@ export function Services() {
       {/* Background - Apple-like gradient on mobile, image on desktop */}
       <div className="absolute inset-0 pointer-events-none">
         {/* Mobile: Apple-style subtle gradient */}
-        <div className="md:hidden absolute inset-0 bg-[radial-gradient(ellipse_100%_100%_at_70%_0%,rgba(0,0,0,0.03)_0%,transparent_50%)]" />
-        <div className="md:hidden absolute inset-0 bg-[radial-gradient(ellipse_80%_80%_at_100%_100%,rgba(0,0,0,0.04)_0%,transparent_50%)]" />
+        <div className="md:hidden absolute inset-0 bg-[radial-gradient(ellipse_120%_80%_at_80%_-20%,rgba(0,0,0,0.08)_0%,transparent_60%)]" />
+        <div className="md:hidden absolute inset-0 bg-[radial-gradient(ellipse_100%_60%_at_100%_100%,rgba(0,0,0,0.06)_0%,transparent_50%)]" />
 
         {/* Desktop: Background image positioned right */}
         <div className="hidden md:block absolute top-0 right-0 bottom-0 w-2/3">
           <img
             src="/services-bg.jpg"
             alt=""
-            className="absolute inset-0 w-full h-full object-cover object-center opacity-30"
+            className="absolute inset-0 w-full h-full object-cover object-center opacity-40"
           />
-          {/* Fade to left */}
-          <div className="absolute inset-0 bg-gradient-to-r from-secondary via-secondary/80 to-transparent" />
+          {/* Fade to left - strong */}
+          <div className="absolute inset-0 bg-gradient-to-r from-secondary via-secondary/70 to-transparent" />
           {/* Fade top edge */}
-          <div className="absolute inset-0 bg-gradient-to-b from-secondary via-transparent to-transparent h-1/4" />
+          <div className="absolute inset-0 bg-[linear-gradient(to_bottom,var(--secondary)_0%,transparent_25%)]" />
           {/* Fade bottom edge */}
-          <div className="absolute inset-0 bg-gradient-to-t from-secondary via-transparent to-transparent h-1/3" />
+          <div className="absolute inset-0 bg-[linear-gradient(to_top,var(--secondary)_0%,transparent_30%)]" />
           {/* Fade right edge */}
-          <div className="absolute inset-0 bg-gradient-to-l from-secondary via-transparent to-transparent w-1/6 ml-auto" />
+          <div className="absolute inset-0 bg-[linear-gradient(to_left,var(--secondary)_0%,transparent_15%)]" />
         </div>
       </div>
 
