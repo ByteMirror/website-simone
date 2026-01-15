@@ -55,9 +55,14 @@ const practiceAreas = [
 export function Services() {
   return (
     <section id="rechtsgebiete" className="py-24 md:py-32 bg-secondary relative overflow-hidden">
-      {/* Background image - positioned right, fading to left */}
+      {/* Background - Apple-like gradient on mobile, image on desktop */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-0 right-0 bottom-0 w-1/2 md:w-2/3">
+        {/* Mobile: Apple-style subtle gradient */}
+        <div className="md:hidden absolute inset-0 bg-[radial-gradient(ellipse_100%_100%_at_70%_0%,rgba(0,0,0,0.03)_0%,transparent_50%)]" />
+        <div className="md:hidden absolute inset-0 bg-[radial-gradient(ellipse_80%_80%_at_100%_100%,rgba(0,0,0,0.04)_0%,transparent_50%)]" />
+
+        {/* Desktop: Background image positioned right */}
+        <div className="hidden md:block absolute top-0 right-0 bottom-0 w-2/3">
           <img
             src="/services-bg.jpg"
             alt=""
