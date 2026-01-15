@@ -27,14 +27,14 @@ export function Hero() {
             alt=""
             className="absolute inset-0 w-full h-full object-cover object-center"
           />
-          {/* Fade to left */}
-          <div className="absolute inset-0 bg-gradient-to-r from-background via-background/70 to-transparent" />
-          {/* Fade top edge */}
-          <div className="absolute inset-0 bg-gradient-to-b from-background via-transparent to-transparent h-1/4" />
-          {/* Fade bottom edge */}
-          <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent h-1/3" />
+          {/* Fade to left - strong */}
+          <div className="absolute inset-0 bg-gradient-to-r from-background via-background/60 to-transparent" />
+          {/* Fade top edge - full height with color stops */}
+          <div className="absolute inset-0 bg-[linear-gradient(to_bottom,var(--background)_0%,transparent_25%)]" />
+          {/* Fade bottom edge - full height with color stops */}
+          <div className="absolute inset-0 bg-[linear-gradient(to_top,var(--background)_0%,transparent_30%)]" />
           {/* Fade right edge */}
-          <div className="absolute inset-0 bg-gradient-to-l from-background via-transparent to-transparent w-1/6 ml-auto" />
+          <div className="absolute inset-0 bg-[linear-gradient(to_left,var(--background)_0%,transparent_15%)]" />
         </div>
       </div>
 
