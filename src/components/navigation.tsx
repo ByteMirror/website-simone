@@ -48,10 +48,11 @@ export function Navigation() {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [isMobileMenuOpen])
 
-  // Lock body scroll when mobile menu is open
+  // Lock body scroll when mobile menu is open and ensure nav is visible
   useEffect(() => {
     if (isMobileMenuOpen) {
       document.body.style.overflow = "hidden"
+      setIsHidden(false) // Always show nav when menu is open
     } else {
       document.body.style.overflow = ""
     }
