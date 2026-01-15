@@ -12,7 +12,7 @@ export function Hero() {
         <img
           src="/hero-bg.jpg"
           alt=""
-          className="absolute inset-0 w-full h-full object-cover object-center"
+          className="absolute inset-0 w-full h-full object-cover object-center opacity-50 md:opacity-100"
         />
         {/* Subtle vignette for edge blending */}
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_90%_70%_at_50%_50%,transparent_40%,var(--background)_100%)]" />
